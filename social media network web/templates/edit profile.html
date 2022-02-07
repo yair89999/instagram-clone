@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <style>
+        .user-profile-img {
+            width: 80px;
+            aspect-ratio: 1;
+            border-radius: 100px;
+        }
+        .user-profile-description {
+            transition-duration: 0.3s;
+            resize: none;
+            width: 75%;
+            aspect-ratio: 1.5;
+            position: relative;left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            background: transparent;
+            border: transparent;
+            padding: 10px;
+        }
+        .user-profile-description:hover {
+            cursor: pointer;
+        }
+        .user-profile-description:focus {
+            background: rgba(0,191,255,0.2);
+            border: 1px solid rgb(240,240,240);
+            cursor: auto;
+        }
+        .update-btn {
+            transition-duration: 0.3s;
+            font-size: 30px;
+            position: relative;left: 50%;
+            transform: translateX(-50%);
+            border-radius: 100px;
+            background: #00b4d8;
+            color: #fff;
+            border: 2px solid #0092b6;
+        }
+        .update-btn:hover {
+            background: #00a3c7;
+            cursor: pointer;
+        }
+        .update-btn:active {
+            background: #0092b6;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <h1 style="text-align: center;">Edit my profile</h1>
+    <form method="post" enctype = "multipart/form-data">
+        <!--profile image-->
+        <p style="text-align: center;">
+            <img src="{{url_for('static',filename=user_info['profile pic path'])}}" class="user-profile-img"> 
+            <a style="position: relative;top: -40px; font-size: 30px;margin-left: 10px;">{{user_info["username"]}}</a>
+            <a href="/remove profile image" style="text-align: center;">remove image</a>
+        </p>
+        <p style="text-align: center;"><input type="file" name="file"></p>
+        <p style="text-align: center;">choose an image</p>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="text-align: center;color: #f00;">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!--profile description-->
+        <textarea name="description" class="user-profile-description" placeholder="Enter a profile description">{{user_info["profile description"]}}</textarea>
+        <p><input type="submit" class="update-btn" value="Update profile"></p>
+    </form>
+{% endblock %}

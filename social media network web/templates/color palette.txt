@@ -1,0 +1,9 @@
+from brightest to darkest
+go here to see the colors 
+https://www.google.com/search?sxsrf=AOaemvKD2QUt6Ebtauski-XkTYbjHonC9w:1638291722932&source=univ&tbm=isch&q=websites+bright+blue+color+palette&fir=IgA2xmSmBjN3UM%252CngiFOEA-GcZDyM%252C_%253ByphjO9vMTVE-PM%252CQolSj9zxiRZE4M%252C_%253B5H1sZEhRNl_3FM%252CEbCzNURDe1qcnM%252C_%253Bmd7cGGnjMVQccM%252CngiFOEA-GcZDyM%252C_%253B1A-GJeYwDDK5KM%252CQolSj9zxiRZE4M%252C_%253BCnEkYgGDUeZ_dM%252CsGgjVMNYKLR50M%252C_%253BvIjyNyZDoBHJ7M%252CZhj5aM9sGJhJhM%252C_%253BnBqvDtMtIknDcM%252CBXtMDZJZneNHzM%252C_%253BKrVqe9UY0etFPM%252CBXtMDZJZneNHzM%252C_%253BEny_xZ9lCUA6nM%252CQolSj9zxiRZE4M%252C_&usg=AI4_-kTwMZOdAeUOn3b4be1j7jeuPXgSYQ&sa=X&ved=2ahUKEwiT2buhyMD0AhVM-6QKHQIVD-oQjJkEegQIChAC#imgrc=IgA2xmSmBjN3UM
+
+#caf0f8 brightest
+#90e0ef
+#00b4d8
+#0077b6
+#03045e darkest

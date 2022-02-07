@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <style>
+        .comments-big-div {
+            width: 700px;
+            position: relative;left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff;
+            border-radius: 10px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+        .normal-comment {
+            position: relative;left: 10px;
+            word-wrap: break-word;
+            max-width: 200px;
+            
+            background: rgba(200,200,200,0.5);
+            border-radius: 10px;
+            border-bottom-left-radius: 0px;
+        }
+        
+        .user-link {
+            color: #123456;
+        }
+        .user-link:hover {
+            color: #05f;
+        }
+        .user-link:active {
+            color: #00f;
+        }
+        .user-link:visited {
+            color: #008ded;
+        }
+
+        .comment-textbox {
+            --minus-width:20px;
+            width: calc(100% - var(--minus-width));
+            height: 10ch;
+            resize: none;
+            position: relative;left: 50%;
+            transform: translateX(-50%);
+            padding: 5px;
+            border: 1px solid #000;
+        }
+        .submit-comment-btn {
+            opacity: 100%;
+            color: #00f;
+            font-size: 20px;
+            position: relative;left: 50%;
+            transform: translateX(-50%);
+            background: transparent;
+            border: transparent;
+        }
+        .submit-comment-btn:hover {
+            cursor: pointer;
+            color: #000;
+        }
+
+        .del-comment-btn {
+            transition-duration: 0.3s;
+            margin-top: 5px;
+            border: 1px solid #53868B;
+            border-top-left-radius: 10px;
+            background:transparent;
+        }
+        .del-comment-btn:hover {
+            cursor: pointer;
+            background: rgba(83,134,139,0.4);
+        }
+        .del-comment-btn:active {
+            background: rgba(83,134,139,0.8);
+            color: #fff;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <h3 style="text-align: center;">
+        <a href="/show post/{{post_id}}">Go to post page</a>
+    </h3>
+    <div class="comments-big-div" style="padding-top: 10px; padding-bottom: 10px;">
+        {% if comments == [] %}
+            <p style="text-align: center;" id="error">Post has not comments</p>
+        {% endif %}
+        {% for comment in comments %}
+            {% if comment["username"] == post_by %}
+                <!--owner-->
+                <p>    
+                    <div class="normal-comment" style="padding-left: 5px; padding-top: 0.3px;">
+                        {% if comment["username"] == username and username != "" %}
+                            <a href="/del comment/{{post_id}}/{{comment['comment']}}">
+                                <button class="del-comment-btn">Del comment</button>
+                            </a>
+                        {% endif %}
+                        <p>By: 
+                            <a href="/show profile/{{comment['username']}}" class="user-link">
+                                <b>{{comment["username"]}} (post uploader)</b>
+                            </a>
+                        </p>
+                        <a>{{comment["comment"]}}</a>
+                    </div>
+                </p>
+            {% else %}
+                <!--not owner-->
+                <p>
+                    <div class="normal-comment" style="padding-left: 5px; padding-top: 0.3px;">
+                        {% if comment["username"] == username and username != "" %}
+                            <a href="/del comment/{{post_id}}/{{comment['comment']}}">
+                                <button class="del-comment-btn">Del comment</button>
+                            </a>
+                        {% endif %}
+                        <p>By: 
+                            <a href="/show profile/{{comment['username']}}" class="user-link">
+                                <b>{{comment["username"]}}</b>
+                            </a>
+                        </p>
+                        <a>{{comment["comment"]}}</a>
+                    </div>
+                </p>
+            {% endif %}
+        {% endfor %}
+
+        {% if login == True %} <!--shows the write comment textbox-->
+            <form method="post">
+                <textarea name="comment" class="comment-textbox" id="comment-textbox" placeholder="Write a comment:" onclick="start_running()"></textarea>
+                {% if error != "" %}
+                    <p style="text-align: center;color: #f00;" id="error">{{error}}</p>
+                {% endif %}
+                <input type="submit" class="submit-comment-btn" id="submit-comment-btn" value="post">
+            </form>
+        {% else %}
+            <p style="text-align: center;color: #00f;" id="error">Login first to send comments</p>
+        {% endif %}
+    </div>
+
+    <script>
+        var func_id = null;
+        function start_running(){
+            func_id = setInterval(post_text,1)
+        }
+        function post_text(){
+            var textarea = document.getElementById("comment-textbox")
+            if (textarea.value === ""){
+                document.getElementById("submit-comment-btn").style.opacity = "60%"
+                //document.getElementById("submit-comment-btn").type = ""
+            } else {
+                document.getElementById("submit-comment-btn").style.opacity = "100%"
+                document.getElementById("submit-comment-btn").type = "submit"
+                document.getElementById("error").innerHTML = "" // removes the error text(let them write something)
+            }
+        }
+        post_text()
+    </script>
+{% endblock %}

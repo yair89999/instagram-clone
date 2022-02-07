@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <style>
+        .post-description {
+            transition-duration: 0.3s;
+            resize: none;
+            width: 75%;
+            aspect-ratio: 1.5;
+            position: relative;left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            background: transparent;
+            border: transparent;
+            padding: 10px;
+        }
+        .post-description:hover {
+            cursor: pointer;
+        }
+        .post-description:focus {
+            background: rgba(0,191,255,0.2);
+            border: 1px solid rgb(240,240,240);
+            cursor: auto;
+        }
+        .upload-btn {
+            transition-duration: 0.3s;
+            font-size: 30px;
+            position: relative;left: 50%;
+            transform: translateX(-50%);
+            border-radius: 100px;
+            background: #00b4d8;
+            color: #fff;
+            border: 2px solid #0092b6;
+            margin: 20px;
+        }
+        .upload-btn:hover {
+            background: #00a3c7;
+            cursor: pointer;
+        }
+        .upload-btn:active {
+            background: #0092b6;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <h1 style="text-align: center;">Upload post page</h1>
+
+    <form method="post" enctype = "multipart/form-data">
+        <p style="text-align: center;"><input type="file" name="file"></p>
+        <p style="text-align: center;">choose an image(works the best when width = height)</p>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="text-align: center;color: #f00;">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <textarea name="description" class="post-description" placeholder="Enter the post description">{{description}}</textarea>
+        <p><input type="submit" class="upload-btn" value="Upload post"></p>
+    </form>
+{% endblock %}
