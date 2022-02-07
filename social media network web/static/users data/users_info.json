@@ -1,0 +1,32 @@
+{
+    "info": [
+        {
+            "yair": {
+                "username": "yair",
+                "password": "yair123",
+                "email": "mizrachi.yair@gmail.com",
+                "profile pic path": "users data/users_icons/yair.PNG",
+                "profile description": "This is my profile\r\nI made this web",
+                "posts": [
+                    "1"
+                ]
+            },
+            "shai": {
+                "username": "shai",
+                "password": "shai123",
+                "email": "mizrachi.shai@gmail.com",
+                "profile pic path": "users data/users_icons/default.png",
+                "profile description": "this is shai's profile",
+                "posts": []
+            },
+            "yona": {
+                "username": "yona",
+                "password": "yona123",
+                "email": "yona@gmail.com",
+                "profile pic path": "users data/users_icons/default.png",
+                "profile description": "",
+                "posts": []
+            }
+        }
+    ]
+}
