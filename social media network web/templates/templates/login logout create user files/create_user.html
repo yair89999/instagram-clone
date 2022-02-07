@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <style>
+        .create-user-div {
+            background: #a2efff;
+            width: 100ch;
+            aspect-ratio: 1.5;
+            position: relative;left: 50%;
+            margin-top: 10px;
+            transform: translateX(-50%);
+            border-radius: 20px;
+            border: 2px solid #4b92a0;
+        }
+        .create-user-div p {
+            font-size: 25px;
+            text-align: center;
+        }
+        
+        .create-user-btn {
+            transition-duration: 0.3s;
+            font-size: 25px;
+            border-radius: 100px;
+            border: 2px solid #00acf0;
+            background: transparent;
+        }
+        .create-user-btn:hover {
+            background: #00acf0;
+        }
+        .create-user-btn:active {
+            background: #006c97;
+            color: #fff;
+        }
+
+        .create-user-div-inputs {
+            transition-duration: 0.3s;
+            font-size: 25px;
+            border: 2px solid rgb(0,208,208);
+            border-radius: 20px;
+            padding-left: 10px;
+        }
+        .create-user-div-inputs:hover {
+            border: 2px solid rgb(0,139,139);
+        }
+        .create-user-div-inputs:focus {
+            background: rgba(0,139,139,0.5);
+        }
+        .link-a {
+            color: #07f;
+            text-decoration: transparent;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <form method="post">
+        <div class="create-user-div">
+            <h1 style="text-align: center;">Create user</h1>
+            <p>Username: <input name="username" class="create-user-div-inputs" placeholder="Username:" value="{{username}}"></p>
+            <p>Password: <input name="password" id="password" type="password" class="create-user-div-inputs" placeholder="Password:" value="{{password}}"></p>
+            
+            <p style="font-size: 20px;"><input type="checkbox" onclick="show_password()">Show password</p>
+            <p>Password(confirm): <input name="password confirm" type="password" class="create-user-div-inputs" placeholder="Password:" value="{{password_confirm}}"></p>
+            <p>Email: <input name="email" class="create-user-div-inputs" placeholder="Email:" value="{{email}}"></p>
+            
+            <p><a href="/login" class="link-a">have an account?</a></p>
+            <p><input type="submit" class="create-user-btn" value="Create"></input></p>
+            {% if error != "" %}
+                <p style="color: #f00;">{{error}}</p>
+            {% endif %}
+        </div>
+    </form>
+
+    <script>
+        function show_password(){
+            // change the password from hide(looking like circles)-show or from show-hide
+            var password_show = document.getElementById("password").type
+            if (password_show === "password"){
+                console.log("change password input type to: text")
+                document.getElementById("password").type = "text"
+            } else {
+                console.log("change password input type to: password")
+                document.getElementById("password").type = "password"
+            }
+        }
+    </script>
+{% endblock %}
